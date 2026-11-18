@@ -9,7 +9,7 @@ NE BU?
    - Hatırlatma bildirimleri (Android'deki kuralların aynısı, sunucusuz)
    - Yedek dosyasını "Dosyalar"a kaydetme, PDF'yi Safari'de açma
    - Soldan kaydırınca geri, internet yokken "Tekrar dene" sayfası, açılışta kedi
-  Paket kimliği: tr.com.wyds.app   ·   Sürüm 1.0.0   ·   Yalnız iPhone (iPad yok)
+  Paket kimliği: tr.com.wyds.app   ·   Sürüm 1.0.0   ·   iPhone + iPad (iPhone Duo dahil)
 
 NEDEN BİLGİSAYARDA DERLENMİYOR?
   iPhone uygulaması yalnız Mac'te (Xcode) derlenir. Mac olmadığı için bulutta derleyen
