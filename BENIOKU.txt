@@ -39,9 +39,8 @@ GEREKENLER (sırayla)
    → .p8 dosyasını İNDİR (bir kez inebilir!), "Issuer ID" ve "Key ID"yi not et.
    Bu dosya GİZLİDİR, kimseyle paylaşma; C:\Users\tugce\w-yds-ios-gizli\ klasörüne koy.
 
-5) KODU GITHUB'A KOY  (Codemagic kodu oradan alır)
-   github.com'da hesap aç → New repository → adı: w-yds-ios → Private → Create.
-   Sonra bana "github'a gönder" de; bu klasörü ben yüklerim.
+5) KODU GITHUB'A KOY  — TAMAM (2026-11-18)
+   https://github.com/tugcegun/w-YDS-ios  (main dalı). Değişiklik olunca Claude gönderir.
 
 6) CODEMAGIC
    https://codemagic.io → GitHub ile giriş → Add application → w-yds-ios → iOS App
