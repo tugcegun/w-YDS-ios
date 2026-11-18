@@ -1,0 +1,39 @@
+# Xcode projesi bu dosyadan üretilir (XcodeGen). Mac'te ya da Codemagic'te: `xcodegen generate`
+name: WYDS
+options:
+  bundleIdPrefix: tr.com.wyds
+  deploymentTarget:
+    iOS: "15.0"
+  developmentLanguage: tr
+packages:
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS
+    from: 8.0.0
+targets:
+  WYDS:
+    type: application
+    platform: iOS
+    sources:
+      - path: WYDS
+        excludes:
+          - "*.entitlements"
+    dependencies:
+      - package: GoogleSignIn
+    entitlements:
+      path: WYDS/WYDS.entitlements
+      properties:
+        com.apple.developer.applesignin: [Default]
+    settings:
+      base:
+        PRODUCT_NAME: WYDS
+        PRODUCT_BUNDLE_IDENTIFIER: tr.com.wyds.app
+        INFOPLIST_FILE: WYDS/Info.plist
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1
+        VERSIONING_SYSTEM: apple-generic
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "5.0"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_BITCODE: NO
+        GENERATE_INFOPLIST_FILE: NO

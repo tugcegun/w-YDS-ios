@@ -1,0 +1,36 @@
+# Codemagic: Mac'i olmayanlar için bulutta iPhone uygulaması derler ve App Store Connect'e (TestFlight) yükler.
+# Codemagic'te önce: Teams → Integrations → App Store Connect → API anahtarını "wyds-asc" adıyla ekle.
+workflows:
+  ios-appstore:
+    name: w YDS iPhone - App Store
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    integrations:
+      app_store_connect: wyds-asc
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: tr.com.wyds.app
+      vars:
+        APP_STORE_APPLE_ID: "0"   # App Store Connect'te uygulama açılınca "Apple ID" numarasıyla değiştir
+      xcode: latest
+    scripts:
+      - name: Xcode projesini oluştur
+        script: |
+          brew install xcodegen
+          xcodegen generate
+      - name: İmza profillerini bağla
+        script: xcode-project use-profiles
+      - name: Yapı numarasını artır
+        script: |
+          SON=$(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID" 2>/dev/null || echo 0)
+          agvtool new-version -all $((SON + 1))
+      - name: Derle (.ipa)
+        script: xcode-project build-ipa --project WYDS.xcodeproj --scheme WYDS
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true

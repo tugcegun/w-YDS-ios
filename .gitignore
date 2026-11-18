@@ -1,0 +1,6 @@
+WYDS.xcodeproj/
+build/
+DerivedData/
+*.ipa
+.DS_Store
+xcuserdata/
