@@ -52,9 +52,7 @@ GEREKENLER (sırayla)
    → Uygulamada codemagic.yaml'ı seç → Start new build.
    Derleme bitince uygulama TestFlight'a kendiliğinden yüklenir.
 
-7) FIREBASE'DE APPLE GİRİŞİNİ AÇ
-   console.firebase.google.com → w-yds-b3885 → Authentication → Sign-in method
-   → Add new provider → Apple → Enable → Save  (başka alan doldurmaya gerek yok).
+7) FIREBASE'DE APPLE GİRİŞİ  — TAMAM (2026-11-18, Claude açtı; paket tr.com.wyds.app)
 
 8) TESTFLIGHT'TA DENE
    iPhone'a "TestFlight" uygulamasını kur → App Store Connect → TestFlight
