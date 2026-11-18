@@ -12,7 +12,7 @@ workflows:
         distribution_type: app_store
         bundle_identifier: tr.com.wyds.app
       vars:
-        APP_STORE_APPLE_ID: "0"   # App Store Connect'te uygulama açılınca "Apple ID" numarasıyla değiştir
+        APP_STORE_APPLE_ID: "6836365741"   # App Store Connect → wYDS → Apple ID
       xcode: latest
     scripts:
       - name: Xcode projesini oluştur
