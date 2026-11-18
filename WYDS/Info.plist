@@ -4,8 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key><string>tr</string>
 	<key>CFBundleLocalizations</key><array><string>tr</string></array>
-	<key>CFBundleDisplayName</key><string>w YDS</string>
-	<key>CFBundleName</key><string>w YDS</string>
+	<key>CFBundleDisplayName</key><string>wYDS</string>
+	<key>CFBundleName</key><string>wYDS</string>
 	<key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key><string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
