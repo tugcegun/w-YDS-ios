@@ -28,6 +28,23 @@ final class WebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
 
     override var preferredStatusBarStyle: UIStatusBarStyle { lightTop ? .darkContent : .lightContent }
 
+    /* sitede seçilen tema ("dark" / "light" / "auto") hatırlanır: bir sonraki açılışta kedi ekranı ve
+       üst/alt şeritler en baştan o temada olur, site yüklenirken beyaz/siyah geçiş görünmez */
+    static let themeKey = "wydsTheme"
+    static var savedStyle: UIUserInterfaceStyle {
+        switch UserDefaults.standard.string(forKey: themeKey) {
+        case "dark": return .dark
+        case "light": return .light
+        default: return .unspecified
+        }
+    }
+    func setTheme(_ t: String) {
+        let v = ["dark", "light"].contains(t) ? t : "auto"
+        guard UserDefaults.standard.string(forKey: Self.themeKey) != v else { return }
+        UserDefaults.standard.set(v, forKey: Self.themeKey)
+        view.window?.overrideUserInterfaceStyle = Self.savedStyle
+    }
+
     /* site renk vermeden önce (açılış, internet yok sayfası) saat/pil yazısı telefonun temasına uysun */
     var pageSetBars = false
     func followSystemBars() {
@@ -165,6 +182,8 @@ final class WebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         case "signOut": GIDSignIn.sharedInstance.signOut()
         case "setBars":
             if let p = arg as? [String], p.count == 2 { setBars(p[0], p[1]) }
+        case "setTheme":
+            if let t = arg as? String { setTheme(t) }
         case "saveFile":
             if let p = arg as? [String], p.count == 2 { saveFile(name: p[0], content: p[1]) }
         case "notifAsk":

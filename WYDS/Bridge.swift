@@ -15,6 +15,7 @@ enum Bridge {
         appleSignIn: function () { send("appleSignIn"); },
         signOut: function () { send("signOut"); },
         setBars: function (t, b) { send("setBars", [String(t), String(b)]); },
+        setTheme: function (t) { send("setTheme", String(t)); },
         saveFile: function (n, c) { send("saveFile", [String(n), String(c)]); },
         notifState: function () { return window.WydsNative._notif; },
         notifAsk: function () { send("notifAsk"); },

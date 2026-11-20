@@ -28,6 +28,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options: UIScene.ConnectionOptions) {
         guard let ws = scene as? UIWindowScene else { return }
         let w = UIWindow(windowScene: ws)
+        w.overrideUserInterfaceStyle = WebViewController.savedStyle /* sitede son seçilen tema */
         w.rootViewController = web
         w.makeKeyAndVisible()
         window = w
