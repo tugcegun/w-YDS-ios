@@ -41,7 +41,7 @@ final class WebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         guard traitCollection.userInterfaceStyle != previous?.userInterfaceStyle else { return }
         followSystemBars()
         /* site "telefona göre" temadaysa çubuk rengini yeniden göndersin */
-        web?.evaluateJavaScript("typeof syncBars==='function'&&setTimeout(syncBars,350)", completionHandler: nil)
+        web?.evaluateJavaScript("typeof syncBars==='function'&&syncBars()", completionHandler: nil)
     }
 
     override func viewDidLoad() {
