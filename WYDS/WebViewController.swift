@@ -346,6 +346,8 @@ final class WebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         hideSplash()
         refreshNotifState()
+        /* uygulamada parmakla yakınlaştırma yok (site de viewport ile kapatır; bu ikinci önlem) */
+        webView.scrollView.pinchGestureRecognizer?.isEnabled = false
     }
 
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
