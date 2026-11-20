@@ -81,10 +81,12 @@ final class WebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
             topBar.bottomAnchor.constraint(equalTo: g.topAnchor),
             topBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             topBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            web.topAnchor.constraint(equalTo: g.topAnchor),
-            web.bottomAnchor.constraint(equalTo: g.bottomAnchor),
-            web.leadingAnchor.constraint(equalTo: g.leadingAnchor),
-            web.trailingAnchor.constraint(equalTo: g.trailingAnchor),
+            /* site tüm ekranı kaplar: saat/pil şeridini sitenin üst çubuğu (yeşil / koyuda siyah) doldurur,
+               alttaki çentik boşluğunu da sitenin alt menüsü. Site bunun için env(safe-area-inset-*) kullanır. */
+            web.topAnchor.constraint(equalTo: view.topAnchor),
+            web.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            web.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            web.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomBar.topAnchor.constraint(equalTo: g.bottomAnchor),
             bottomBar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             bottomBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -202,6 +204,10 @@ final class WebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         topBar.backgroundColor = t
         bottomBar.backgroundColor = b
         view.backgroundColor = t
+        /* sayfa aşağı çekilince üstte açılan boşluk da çubuk renginde olsun (beyaz şerit görünmesin) */
+        web.backgroundColor = t
+        web.scrollView.backgroundColor = t
+        if #available(iOS 15.0, *) { web.underPageBackgroundColor = t }
         lightTop = Self.isLight(t)
         pageSetBars = true
         setNeedsStatusBarAppearanceUpdate()
