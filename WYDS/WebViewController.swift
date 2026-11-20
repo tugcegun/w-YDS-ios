@@ -70,8 +70,6 @@ final class WebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         web.backgroundColor = Self.zemin
         web.scrollView.backgroundColor = Self.zemin
         web.scrollView.contentInsetAdjustmentBehavior = .never
-        /* sayfa çekilince esnemesin: esnerken arkada zemin açılıyordu (site de overscroll-behavior ile kapatır) */
-        web.scrollView.bounces = false
 
         for v in [topBar, web!, bottomBar] as [UIView] {
             v.translatesAutoresizingMaskIntoConstraints = false
