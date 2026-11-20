@@ -12,7 +12,7 @@ enum Offline {
     button{font:inherit;font-weight:600;border:0;border-radius:12px;padding:12px 24px;background:#006B54;color:#fff}
     </style></head><body><div>
     <h1>İnternet bağlantısı yok</h1>
-    <p>w YDS'yi açmak için internete bağlan, sonra tekrar dene.</p>
+    <p>wYDS'yi açmak için internete bağlan, sonra tekrar dene.</p>
     <button onclick="WydsNative.retry()">Tekrar dene</button>
     </div></body></html>
     """

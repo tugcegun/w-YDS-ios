@@ -1,82 +1,82 @@
-w YDS — iPhone (App Store) uygulaması
-=====================================
+wYDS — iPhone / iPad (App Store) uygulaması
+==========================================
 
 NE BU?
-  Android uygulamasının iPhone eşi. wyds.com.tr'yi uygulama içinde açar ve telefonun
+  Android uygulamasının iPhone/iPad eşi. wyds.com.tr'yi uygulama içinde açar ve telefonun
   kendi özelliklerini kullanır:
    - Google ile giriş (iPhone'un Google penceresi)
    - Apple ile giriş (App Store, Google girişi olan uygulamalarda bunu ŞART koşuyor)
    - Hatırlatma bildirimleri (Android'deki kuralların aynısı, sunucusuz)
    - Yedek dosyasını "Dosyalar"a kaydetme, PDF'yi Safari'de açma
    - Soldan kaydırınca geri, internet yokken "Tekrar dene" sayfası, açılışta kedi
-  Paket kimliği: tr.com.wyds.app   ·   Sürüm 1.0.0   ·   iPhone + iPad (iPhone Duo dahil)
+  Paket kimliği: tr.com.wyds.app · Apple ID: 6836365741 · Sürüm 1.0.0
+  Cihazlar: iPhone + iPad (iPhone Duo dahil). Ad her yerde bitişik: wYDS
 
 NEDEN BİLGİSAYARDA DERLENMİYOR?
-  iPhone uygulaması yalnız Mac'te (Xcode) derlenir. Mac olmadığı için bulutta derleyen
-  ücretsiz Codemagic hizmetini kullanacağız (ayda 500 dakika ücretsiz; bir derleme ~10 dk).
+  iPhone uygulaması yalnız Mac'te (Xcode) derlenir. Mac olmadan bulutta derleyen
+  Codemagic'i kullanıyoruz (ayda 500 dakika ücretsiz; bir derleme ~10 dk).
+  Mac varsa: brew install xcodegen → xcodegen generate → WYDS.xcodeproj'u Xcode'da aç.
 
 
-GEREKENLER (sırayla)
---------------------
-1) APPLE DEVELOPER HESABI  (yıllık 99 $)
-   https://developer.apple.com/programs/enroll/ → Apple kimliğinle kaydol.
-   Onay 1-2 gün sürebilir. Bireysel hesap yeterli.
+DURUM
+-----
+  [TAMAM] 1) Apple Developer hesabı (Team ID 3V8HK38A79)
+  [TAMAM] 2) Paket kimliği tr.com.wyds.app, "Sign In with Apple" açık
+  [TAMAM] 3) App Store Connect'te uygulama (Name: wYDS, Apple ID 6836365741)
+  [ ]     4) API anahtarı
+  [TAMAM] 5) Kod GitHub'da: https://github.com/tugcegun/w-YDS-ios (main)
+  [ ]     6) Codemagic ile derleme → TestFlight
+  [TAMAM] 7) Firebase'de Apple girişi (paket tr.com.wyds.app)
+  [ ]     8) TestFlight'ta deneme
+  [YARIM] 9) Mağaza bilgileri: görseller, kapak, URL'ler yüklendi;
+             eksik: iletişim bilgisi, inceleme deneme hesabı, App Privacy "Publish"
 
-2) PAKET KİMLİĞİNİ AÇ  (onay geldikten sonra)
-   developer.apple.com → Account → Certificates, IDs & Profiles → Identifiers → (+)
-   → App IDs → App → Description: w YDS, Bundle ID (Explicit): tr.com.wyds.app
-   → Capabilities listesinde "Sign In with Apple" kutusunu işaretle → Continue → Register.
 
-3) APP STORE CONNECT'TE UYGULAMAYI AÇ
-   https://appstoreconnect.apple.com → Apps → (+) New App
-   Platform: iOS · Name: w YDS · Primary language: Turkish
-   Bundle ID: tr.com.wyds.app · SKU: wyds-ios · Full Access
-   Açılınca: App Information sayfasındaki "Apple ID" numarasını (ör. 6745…) bana gönder.
-
-4) API ANAHTARI  (Codemagic'in senin adına yükleme yapabilmesi için)
+4) API ANAHTARI  (Codemagic'in yükleme yapabilmesi için)
    App Store Connect → Users and Access → Integrations → App Store Connect API
    → Team Keys → (+) Name: codemagic, Access: App Manager → Generate
-   → .p8 dosyasını İNDİR (bir kez inebilir!), "Issuer ID" ve "Key ID"yi not et.
-   Bu dosya GİZLİDİR, kimseyle paylaşma; C:\Users\tugce\w-yds-ios-gizli\ klasörüne koy.
-
-5) KODU GITHUB'A KOY  — TAMAM (2026-11-18)
-   https://github.com/tugcegun/w-YDS-ios  (main dalı). Değişiklik olunca Claude gönderir.
+   → .p8 dosyasını İNDİR (yalnız bir kez inebilir), "Issuer ID" ve "Key ID"yi not et.
+   Bu dosya GİZLİDİR: GitHub'a koyma, sohbete yapıştırma.
 
 6) CODEMAGIC
-   https://codemagic.io → GitHub ile giriş → Add application → w-yds-ios → iOS App
+   https://codemagic.io → GitHub ile giriş → Add application → w-YDS-ios → iOS App
    → Teams → Integrations → App Store Connect → Connect:
       Name: wyds-asc  ·  Issuer ID, Key ID, .p8 dosyası (4. adımdan)
    → Teams → Code signing identities → iOS certificates → "Generate certificate"
-      (Apple Distribution) → sonra iOS provisioning profiles → "Fetch profiles"
+      (Apple Distribution) → iOS provisioning profiles → "Fetch profiles"
       (tr.com.wyds.app, App Store).
    → Uygulamada codemagic.yaml'ı seç → Start new build.
-   Derleme bitince uygulama TestFlight'a kendiliğinden yüklenir.
+   Derleme bitince yapı TestFlight'a kendiliğinden yüklenir.
 
-7) FIREBASE'DE APPLE GİRİŞİ  — TAMAM (2026-11-18, Claude açtı; paket tr.com.wyds.app)
+8) TESTFLIGHT'TA DENE  (hem iPhone hem iPad'de)
+   App Store Connect → TestFlight → Internal Testing → e-postanı ekle →
+   cihaza "TestFlight" uygulamasını kur → wYDS'yi kur ve şunları dene:
+   Google girişi, Apple girişi, bildirim izni, yedek kaydetme,
+   internet kapalıyken açılış, iPad'de yatay/dikey çevirme.
 
-8) TESTFLIGHT'TA DENE
-   iPhone'a "TestFlight" uygulamasını kur → App Store Connect → TestFlight
-   → Internal Testing → kendi e-postanı ekle → telefonda w YDS'yi kur ve dene:
-   Google girişi, Apple girişi, bildirim izni, yedek kaydetme, internet kapalıyken açılış.
-
-9) MAĞAZA BİLGİLERİ VE İNCELEMEYE GÖNDERME
-   Ekran görüntüleri hazır: C:\Users\tugce\w-yds-android\magaza\2026-11\app-store\
-   (6 adet 1290×2796 — "6.9 inç iPhone" bölümüne yükle)
+9) MAĞAZA BİLGİLERİ
+   Ekran görüntüleri (Windows bilgisayarda, App Store Connect'e YÜKLENDİ):
+     C:\Users\tugce\w-yds-android\magaza\2026-11\app-store\
+       1206x2622\        iPhone (5 adet)
+       ipad-2064x2752\   13" iPad (5 adet)
+       duo-2007x2853\    iPhone Duo (5 adet)
+       kapak\            App Store başlık görseli 5244×2950 (yüklendi)
    Gizlilik politikası URL: https://wyds.com.tr/gizlilik
    Destek URL: https://wyds.com.tr
-   Kategori: Education (Eğitim) · Yaş: 4+ · Fiyat: Ücretsiz
-   App Privacy (veri etiketi): Ad, E-posta, Kullanıcı içeriği, Ürün etkileşimi
+   Kategori: Education · Yaş: 4+ · Fiyat: Ücretsiz
+   App Privacy: Ad, E-posta, Kullanıcı içeriği, Ürün etkileşimi
      → hepsi "App Functionality", kimliğe bağlı, izleme (tracking) YOK.
-   Hesap silme: uygulama içinde Ayarlar → "Hesabımı kalıcı olarak sil" (Apple bunu arar).
-   İnceleme notu (App Review Information → Notes) örneği:
-     "w YDS is a study app for English proficiency exams in Turkey (YDS/YÖKDİL).
+   Hesap silme: uygulama içinde Ayarlar → "Hesabımı kalıcı olarak sil".
+   İnceleme notu (App Review Information → Notes):
+     "wYDS is a study app for English proficiency exams in Turkey.
       Sign in with Apple, Google or e-mail. Native features: Sign in with Apple,
       local study reminders, file export. Account deletion: Settings → Hesabımı kalıcı olarak sil."
-   Ayrıca inceleme için bir DENEME HESABI (e-posta + şifre) yazmak gerekir; birlikte açarız.
+   EKSİK: inceleme için DENEME HESABI (e-posta + şifre) — henüz açılmadı.
+   EKSİK: App Review iletişim bilgisi (ad, soyad, telefon, e-posta).
 
 ÖNEMLİ: Apple, "yalnız bir web sitesini saran" uygulamaları reddedebiliyor (kural 4.2).
-  Bu yüzden uygulamada telefona özgü özellikler var (Apple girişi, bildirimler, dosya kaydetme,
-  çevrimdışı ekran, kaydırarak geri). Yine de ret gelirse, gelen mesajla birlikte bana getir.
+  Bu yüzden telefona özgü özellikler var (Apple girişi, bildirimler, dosya kaydetme,
+  çevrimdışı ekran, kaydırarak geri). Ret gelirse mesajı olduğu gibi getir.
 
 
 DOSYALAR
@@ -87,7 +87,7 @@ DOSYALAR
   WYDS/WebViewController.swift   site penceresi, giriş, çubuk renkleri, yedek, geri
   WYDS/Bridge.swift    sitenin gördüğü WydsNative köprüsü (Android ile aynı adlar)
   WYDS/Notif.swift     hatırlatma bildirimleri
-  WYDS/GoogleService-Info.plist  Firebase'deki "w YDS iOS" uygulamasının ayarları
+  WYDS/GoogleService-Info.plist  Firebase'deki iOS uygulamasının ayarları
   WYDS/Assets.xcassets ikon (1024, saydamsız) + açılış rengi/kedi
 
 YENİ SÜRÜM ÇIKARIRKEN

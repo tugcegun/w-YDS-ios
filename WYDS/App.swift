@@ -2,7 +2,7 @@ import UIKit
 import UserNotifications
 import GoogleSignIn
 
-/* w YDS iPhone uygulaması: wyds.com.tr'yi uygulama içinde açar (Android sürümünün eşi).
+/* wYDS iPhone uygulaması: wyds.com.tr'yi uygulama içinde açar (Android sürümünün eşi).
    Site, WydsNative köprüsüyle telefonun özelliklerini kullanır:
    Google ve Apple ile giriş, yedek dosyası kaydetme, üst/alt çubuk renkleri, hatırlatma bildirimleri. */
 @main

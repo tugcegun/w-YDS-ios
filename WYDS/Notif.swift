@@ -52,7 +52,7 @@ final class Notif: NSObject, UNUserNotificationCenterDelegate {
                 let when = Date(timeIntervalSince1970: ms / 1000)
                 if when <= now { continue }
                 let c = UNMutableNotificationContent()
-                c.title = o["title"] as? String ?? "w YDS"
+                c.title = o["title"] as? String ?? "wYDS"
                 c.body = o["body"] as? String ?? ""
                 c.sound = .default
                 c.threadIdentifier = "hatirlatma"
