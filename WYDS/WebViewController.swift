@@ -28,8 +28,25 @@ final class WebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
 
     override var preferredStatusBarStyle: UIStatusBarStyle { lightTop ? .darkContent : .lightContent }
 
+    /* site renk vermeden önce (açılış, internet yok sayfası) saat/pil yazısı telefonun temasına uysun */
+    var pageSetBars = false
+    func followSystemBars() {
+        guard !pageSetBars else { return }
+        lightTop = traitCollection.userInterfaceStyle != .dark
+        setNeedsStatusBarAppearanceUpdate()
+    }
+
+    override func traitCollectionDidChange(_ previous: UITraitCollection?) {
+        super.traitCollectionDidChange(previous)
+        guard traitCollection.userInterfaceStyle != previous?.userInterfaceStyle else { return }
+        followSystemBars()
+        /* site "telefona göre" temadaysa çubuk rengini yeniden göndersin */
+        web?.evaluateJavaScript("typeof syncBars==='function'&&setTimeout(syncBars,350)", completionHandler: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        followSystemBars()
         view.backgroundColor = Self.zemin
         topBar.backgroundColor = Self.zemin
         bottomBar.backgroundColor = Self.zemin
@@ -186,6 +203,7 @@ final class WebViewController: UIViewController, WKNavigationDelegate, WKUIDeleg
         bottomBar.backgroundColor = b
         view.backgroundColor = t
         lightTop = Self.isLight(t)
+        pageSetBars = true
         setNeedsStatusBarAppearanceUpdate()
     }
 
